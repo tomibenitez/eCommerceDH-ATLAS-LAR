@@ -1,0 +1,226 @@
+body, html {
+  background: #eee;
+}
+header.header-navbar{
+  margin-bottom: 0px;
+  position: relative;
+  z-index: 10;
+  }
+section {
+  margin: 0 auto;
+  width: 90%;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  }
+
+.filter {
+  width: 100%;
+  padding: 3rem;
+  background: url("../images/surfboards-category.jpg");
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 20px;
+  }
+  .filter .input-field{
+    margin-top: 10px;
+    }
+  .filter .input-field:first-child{
+    margin-top: 0px;
+    }
+    .filter form {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      border-radius: 10px;
+
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .filter label {
+        width: 100%;
+        display: inline-block;
+        margin-bottom: 5px;
+        color: white;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 1),
+                    -1px -1px 3px rgba(0, 0, 0, 1),
+                    1px 0px 3px rgba(0, 0, 0, 1),
+                    0px 1px 3px rgba(0, 0, 0, 1),
+                    -1px 0px 3px rgba(0, 0, 0, 1),
+                    0px -1px 3px rgba(0, 0, 0, 1);
+        }
+      .filter form .input-field {
+        width: 100%;
+        }
+        .filter select {
+          border-radius: 5px;
+          width: 100%;
+          color: #222;
+          font-size: 1rem;
+          font-weight: bold;
+          padding: 10px;
+          }
+          .filter select option:nth-child(even){
+            background: #ddd;
+            }
+    .filter form .input-field.price {
+      width: 48%;
+      }
+      .filter form .input-field .sorts {
+        display: flex;
+        justify-content: space-between;
+        width: 70%;
+        margin: 0 auto;
+        }
+        .filter form .input-field .sorts input {
+          position: absolute;
+          visibility: hidden;
+          left: -20px;
+          }
+        .filter form .input-field .sorts input:checked + label {
+          color: dodgerblue;
+          font-weight: bold;
+
+          transform: scale(1.2);
+          }
+        .filter form .input-field .sorts input:checked + label hr {
+          left: 0;
+          }
+        .filter form .sorts label {
+          width: auto;
+          cursor: pointer;
+          user-select: none;
+          overflow: hidden;
+          transition: transform 0.2s, color 0.2s;
+          padding: 2px;
+          }
+        .filter form .sorts label hr {
+          position: relative;
+          left: -50px;
+          transition: left 0.2s;
+          }
+    .filter form button {
+      margin: 0 auto;
+      margin-top: 15px;
+      padding: 1rem 3rem;
+      }
+
+article.product__container{
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  flex: 1;
+  min-width: 280px;
+  max-width: 390px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: white;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  border-bottom-left-radius: 0px;
+  }
+  .product__image {
+    height: 85%;
+    position: relative;
+    }
+    .product__image img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      }
+  .product__details {
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 1),
+                  0px 0px 10px rgba(0, 0, 0, 1),
+                  -5px -5px 10px rgba(0, 0, 0, 1),
+                  5px -5px 10px rgba(0, 0, 0, 1),
+                  -5px 5px 10px rgba(0, 0, 0, 1);
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .product__details span {
+      flex-basis: 100%;
+      padding: 5px 10px 5px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+      }
+    .product__details span:last-child {
+      text-align: right;
+      padding-bottom: 5px;
+      padding-top: 5px;
+      background: linear-gradient(to left, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+      }
+  .product__action {
+    flex: 1;
+    display: flex;
+    }
+    .product__action a{
+      flex:4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0;
+      padding: 0;
+      outline: 15px solid dodgerblue;
+      transition: outline-offset 0.2s, box-shadow 0.4s;
+      opacity: 1;
+      outline-offset: 0px;
+      }
+    .product__action a:hover {
+      outline-offset: -6px;
+      box-shadow: 10px 0px 20px inset rgba(0, 0, 0, 0.5);
+      }
+    .product__action button {
+      flex: 3;
+      border-radius: 0;
+      padding: 0;
+      font-size: 1rem;
+      text-shadow: 1px 1px 3px rgb(14, 5, 112),
+                     1px 1px 3px rgb(14, 5, 112);
+      font-weight: bold;
+      background: linear-gradient(to right, #1E90FF 50%, #0b37bb);
+      background-size: 250%;
+      transition: background-position 2.8s, box-shadow 1.5s;
+      opacity: 1;
+      }
+      .product__action button:hover {
+        background-position: 100%;
+        transition: background-position .4s, box-shadow 0.5s;
+        box-shadow: 2px 2px 4px rgba(121, 249, 233, 0.45) inset;
+        }
+      .product__action button:active {
+        background-position: 100%;
+        transition: background-position .4s, box-shadow 0.1s;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6) inset;
+        }
+.btn {
+  background: dodgerblue;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: white;
+  opacity: 0.8;
+  transition: opacity 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8rem;
+  }
+  .btn:hover {
+    opacity: 1;
+    }
+.btn-white {
+  background: white;
+  color: black;
+  }
+
+@media all and (min-width: 650px){
+  section.filter form {
+    width: calc(350px + 30vw);
+    }
+}
