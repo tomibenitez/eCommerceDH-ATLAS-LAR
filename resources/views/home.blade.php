@@ -26,7 +26,14 @@
             <li class="dropdown__toggler"><img src="storage/users_pics/{{Auth::user()->user_pic}}" class="thumbnail-user"/><a> {{Auth::user()->name}} </a>
               <div class="dropdown__box">
                 <a href="#" class="dropdown__link">Ver perfil</a>
-                <a href="#" class="dropdown__link">Cerrar sesión</a>
+                <a href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                    Cerrar sesión
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
               </div>
             </li>
           @ELSE

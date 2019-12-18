@@ -27,7 +27,14 @@
           <li class="dropdown__toggler"><img src="images/users/{{ $a }}" class="thumbnail-user"/><a>{{ $b }}</a>
             <div class="dropdown__box">
               <a href="user.php" class="dropdown__link">Ver perfil</a>
-              <a href="logout.php" class="dropdown__link">Cerrar sesión</a>
+              <a href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                  Cerrar sesión
+              </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+              </form>
             </div>
           </li>
         @ELSE
