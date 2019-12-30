@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/questions', function(){
+    return view('questions');
+})->name('questions');
 
-// Route::get('/test', function(){
-//   return view('auth.register');
-// });
+Route::get('user/profile', 'UserController@showProfile')->name('user/profile')->middleware('auth');

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +21,11 @@
       </div>
       <nav id="nav" class="">
         <ul>
-          <li><a href="#">Home</a></li>
+          <li><a href="{{ route('home') }}">Home</a></li>
           @AUTH
-            <li class="dropdown__toggler"><img src="storage/users_pics/{{Auth::user()->user_pic}}" class="thumbnail-user"/><a> {{Auth::user()->name}} </a>
+            <li class="dropdown__toggler"><img src="/storage/users_pics/{{ Auth::user()->user_pic }}" class="thumbnail-user"/><a> {{ Auth::user()->name }} </a>
               <div class="dropdown__box">
-                <a href="#" class="dropdown__link">Ver perfil</a>
+                <a href="{{ route('user/profile') }}" class="dropdown__link">Ver perfil</a>
                 <a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
@@ -37,10 +37,10 @@
               </div>
             </li>
           @ELSE
-            <li><a href="#">Entrar</a></li>
-            <li><a href="#">Registrarse</a></li>
+            <li><a href="{{ route('login') }}">Entrar</a></li>
+            <li><a href="{{ route('register') }}">Registrarse</a></li>
           @ENDAUTH
-          <li><a href="#">FAQ</a></li>
+          <li><a href="{{ route('questions') }}">FAQ</a></li>
         </ul>
         <form action="#" class="search-form" id="search-form" method="get">
           <input type="text" id="search" class="search-field" name="search" placeholder="Search">
@@ -58,7 +58,7 @@
         @ELSE
           <h2>Registrate</h2>
           <p>Y encontrá todo lo que necesitás para surfear</p>
-          <a href="register.php" class="btn">Crear cuenta</a>
+          <a href="{{ route('register') }}" class="btn">Crear cuenta</a>
         @ENDAUTH
     </div>
   </div>

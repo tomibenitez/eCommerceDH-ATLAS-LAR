@@ -26,7 +26,9 @@
     </div>
     <div class="form-action">
       <button type="submit">Iniciar sesión</button>
-      <a href="{{ route('password.request') }}">Olvidé mi contraseña</a>
+      @if (Route::has('password.request'))
+        <a href="{{ route('password.request') }}">Olvidé mi contraseña</a>
+      @endif
     </div>
   </form>
 @ENDSECTION
