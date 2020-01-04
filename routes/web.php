@@ -19,4 +19,10 @@ Route::get('/questions', function(){
     return view('questions');
 })->name('questions');
 
-Route::get('user/profile', 'UserController@showProfile')->name('user/profile')->middleware('auth');
+Route::get('user/profile', 'UserProfileController@showProfile')->name('user/profile')->middleware('auth');
+
+Route::get('user/profile/edit', 'UserProfileController@showProfileEdit')->name('user/profile/edit')->middleware('auth');
+
+Route::get('user/profile/add-address', 'UserProfileController@showAddAddressForm')->name('user/profile/add-address')->middleware('auth','no.address');
+
+Route::post('user/profile/add-address', 'UserProfileController@AddAddress')->name('user/profile/add-address')->middleware('auth');

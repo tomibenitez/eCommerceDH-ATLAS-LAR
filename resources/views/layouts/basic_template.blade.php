@@ -15,7 +15,7 @@
   <header class="header-navbar">
     <div class="main-hd">
 
-        <img src="images/icons/Atlas-surf-logo2.png" alt="">
+        <img src="/images/icons/Atlas-surf-logo2.png" alt="">
 
       <button class="hamburger" type="button" id="hamburger"><i class="fas fa-bars"></i></button>
       <button type="button" id="search-button" class="hamburger search"><label id="label-search" for="search"><i class="fas fa-search"></i></label></button>

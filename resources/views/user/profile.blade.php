@@ -1,6 +1,6 @@
 @EXTENDS("layouts.basic_template")
 @SECTION('styles') <link rel="stylesheet" href="/css/user.css"> @ENDSECTION
-@SECTION('title') <title>User info</title> @ENDSECTION
+@SECTION('title') <title>Información del usuario</title> @ENDSECTION
 @SECTION('main')
   <div class="user-info">
     <div class="shadow-container">
@@ -40,6 +40,9 @@
   <section class="settings panel">
     <h5 class="panel__header">Selecciona las categorías de las cuales te gustaría recibir ofertas:</h5>
     <form action="/user/update_fav_categories" method="post">
+
+      @CSRF
+
       <div class="input-field">
         <input id="boards" type="checkbox" name="favCategories[]" value="1"><label for="boards">Tablas</label>
       </div>
@@ -61,7 +64,7 @@
   </section>
 
   <section class="user-details panel">
-    <div class="panel__header"><h4>Información de la cuenta</h4><a href="edit-user-info.php" class="btn btn-white">Editar</a></div>
+    <div class="panel__header"><h4>Información de la cuenta</h4><a href="{{ route('user/profile/edit') }}" class="btn btn-white">Editar</a></div>
     <ul>
       <li>
         <h5>Nombre de usuario:</h5>
@@ -71,29 +74,27 @@
         <h5>Email:</h5>
         <span>{{ Auth::user()->email }}</span>
       </li>
-      @IF (Auth::user()->address)
       <li>
         <h5>Dirección:</h5>
-        <span>{{ Auth::user()->address->address }}</span>
+        <span>{{ Auth::user()->address->address ?? 'No tiene' }}</span>
       </li>
       <li>
         <h5>Ciudad:</h5>
-        <span>{{ Auth::user()->address->city }}</span>
+        <span>{{ Auth::user()->address->city ?? 'No tiene' }}</span>
       </li>
       <li>
         <h5>Provincia:</h5>
-        <span>{{ Auth::user()->address->province }}</span>
+        <span>{{ Auth::user()->address->province->name ?? 'No tiene' }}</span>
       </li>
       <li>
         <h5>Zip:</h5>
-        <span>{{ Auth::user()->address->zip }}</span>
+        <span>{{ Auth::user()->address->zip ?? 'No tiene' }}</span>
       </li>
-    </ul>
-      @ELSE
-    </ul>
-    <div>
-      <a href="#" class="btn">Añade una Dirección!</a>
-    </div>
+      @IF (!Auth::user()->address)
+      <li class="add-address">
+        <a href="{{ route('user/profile/add-address') }}" class="btn">Añade una Dirección!</a>
+      </li>
       @ENDIF
+    </ul>
   </section>
 @ENDSECTION

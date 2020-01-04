@@ -376,6 +376,10 @@ section.panel{
         .user-edit .form-action input {
           width: 80%;
           }
+  .user-details .add-address {
+    flex-basis: 100%;
+    text-align: center;
+    }
   .error-message{
     min-height: 20px;
     padding: 5px 0px;

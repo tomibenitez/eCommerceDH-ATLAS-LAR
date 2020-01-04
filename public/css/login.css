@@ -39,6 +39,12 @@
     flex-basis: 100%;
     text-align: center;
     }
+.error-message{
+  min-height: 20px;
+  padding: 5px 0px;
+  font-size: 0.9rem;
+  color: red;
+  }
 
 @media all and (min-width: 650px) {
   .form-action a {

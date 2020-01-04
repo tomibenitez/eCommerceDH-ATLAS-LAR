@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('address');
             $table->string('city');
-            $table->string('province');
+            $table->unsignedBigInteger('province_id');
             $table->string('zip');
             $table->timestamps();
         });

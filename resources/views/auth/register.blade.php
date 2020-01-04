@@ -7,29 +7,33 @@
     @CSRF
     <div class="form-row justify-content-center">
       <div class="form-group col-md-3">
-        <label for="email">Email</label> @ERROR('email') <span>{{ $message }}</span> @ENDERROR
+        <label for="email">Email</label>
         <input type="email" class="form-control" name="email" id="email" required placeholder="Email" value="{{ old('email') }}">
+        <p class="error-message">@ERROR('email') {{ $message }} @ENDERROR</p>
       </div>
       <div class="form-group col-md-3">
-        <label for="password">Contraseña</label> @ERROR('password') <span>{{ $message }}</span> @ENDERROR
+        <label for="password">Contraseña</label>
         <input type="password" class="form-control" name="password" id="password" placeholder="***********">
+        <p class="error-message">@ERROR('password') {{ $message }} @ENDERROR</p>
       </div>
     </div>
     <div class="form-row justify-content-center">
       <div class="form-group col-md-3">
         <label for="userPic">Foto de perfil</label>
         <input type="file" name="userPic" id="userPic">
-        @ERROR('userPic') <span>{{ $message }}</span> @ENDERROR
+        <p class="error-message">@ERROR('userPic') {{ $message }} @ENDERROR</p>
       </div>
       <div class="form-group col-md-3">
         <label for="password-confirm">Confirmar contraseña</label>
         <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
+        <p class="error-message">@ERROR('password_confirmation') {{ $message }} @ENDERROR</p>
       </div>
     </div>
     <div class="form-row justify-content-center">
       <div class="form-group col-md-3">
-        <label for="name">Nombre de usuario</label> @ERROR('name') <span>{{ $message }}</span> @ENDERROR
+        <label for="name">Nombre de usuario</label>
         <input type="text" class="form-control" name="name" id="name" required placeholder="Nombre de usuario" value="{{ old('name') }}">
+        <p class="error-message">@ERROR('name') {{ $message }} @ENDERROR</p>
       </div>
     </div>
     <div class="form-row justify-content-center">
