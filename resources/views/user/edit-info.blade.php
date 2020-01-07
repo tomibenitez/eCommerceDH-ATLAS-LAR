@@ -10,14 +10,14 @@
   </div>
 
   <section class="user-edit panel">
-   <div class="panel__header"><h4><label for="userName">Nombre de usuario</label></h4></div>
+   <div class="panel__header"><h4><label for="name">Nombre de usuario</label></h4></div>
    <form action="" method="post">
 
       @CSRF
 
       <div class="input-field">
-        <input id="userName" type="text" name="userName" value="{{ Auth::user()->name }}">
-        <p class="error-message">@ERROR('userName') {{ $message }} @ENDERROR</p>
+        <input id="name" type="text" name="name" value="{{ Auth::user()->name }}">
+        <p class="error-message">@ERROR('name') {{ $message }} @ENDERROR</p>
       </div>
       <div class="form-action">
         <button type="submit" class="btn">Confirmar cambios</button>
@@ -42,9 +42,9 @@
  </section>
 
 @IF ( Auth::user()->address )
- <section class="user-edit panel" id="address">
+ <section class="panel panel-with-form" id="address">
    <div class="panel__header"><h4>Nuevo domicilio</h4></div>
-   <form action="" method="post">
+   <form action="{{ route('user/profile/add-address') }}" method="post">
 
       @CSRF
 
@@ -53,23 +53,13 @@
         <input id="address" type="text" name="address" value="{{ Auth::user()->address->address }}">
         <p class="error-message"></p>
       </div>
-      <div class="form-action">
-        <button type="submit" class="btn">Confirmar cambios</button>
-      </div>
-   </form>
- </section>
-
- <section class="user-edit panel">
-   <div class="panel__header"><h4>Ciudad y provincia</h4></div>
-   <form action="" method="post">
-
-      @CSRF
 
       <div class="input-field">
         <label for="city">Ciudad</label>
         <input id="city" type="text" name="city" value="{{ Auth::user()->address->city }}">
         <p class="error-message"></p>
       </div>
+
       <div class="input-field">
         <label for="province">Provincia</label>
         <select id="province" name="province">
@@ -79,29 +69,21 @@
         </select>
         <p class="error-message"></p>
       </div>
-      <div class="form-action">
-        <button type="submit" class="btn">Confirmar cambios</button>
-      </div>
-   </form>
- </section>
-
- <section class="user-edit panel">
-   <div class="panel__header"><h4>Cambiar código Zip</h4></div>
-   <form action="" method="post">
-
-      @CSRF
 
       <div class="input-field">
-        <label for="zip">Zip</label>
-        <input id="zip" type="text" name="zip" value="{{ Auth::user()->address->zip }}">
-        <p class="error-message">@ERROR('zip') {{ $message }} @ENDERROR</p>
-      </div>
+       <label for="zip">Zip</label>
+       <input id="zip" type="text" name="zip" value="{{ Auth::user()->address->zip }}">
+       <p class="error-message">@ERROR('zip') {{ $message }} @ENDERROR</p>
+     </div>
+
       <div class="form-action">
         <button type="submit" class="btn">Confirmar cambios</button>
       </div>
+
    </form>
  </section>
 @ENDIF
+
  <section class="user-edit panel">
    <div class="panel__header"><h4>Nueva foto de perfil</h4></div>
    <form action="" method="post" enctype="multipart/form-data">
@@ -110,9 +92,12 @@
 
       <div class="input-field">
         <label for="userPic">Foto de perfil</label>
-        <input class="user-pic" id="userPic" type="file" name="userPic">
+        <input class="file-input" id="userPic" type="file" name="userPic">
         <p class="error-message">@ERROR('userPic') {{ $message }} @ENDERROR</p>
       </div>
+
+      <input type="hidden" name="thereIsPic" value="1">
+
       <div class="form-action">
         <button type="submit" class="btn">Confirmar cambios</button>
       </div>
@@ -128,12 +113,12 @@
       <div class="input-field">
         <label for="newPassword">Nueva contraseña</label>
         <input id="newPassword" type="password" name="newPassword">
-        <p class="error-message"></p>
+        <p class="error-message">@ERROR('newPassword') {{ $message }} @ENDERROR</p>
       </div>
       <div class="input-field">
         <label for="newPasswordRepeat">Vuelva a escribir su nueva contraseña</label>
-        <input id="newPasswordRepeat" type="password" name="newPasswordRepeat">
-        <p class="error-message">@ERROR('newPassword') {{ $message }} @ENDERROR</p>
+        <input id="newPasswordRepeat" type="password" name="newPassword_confirmation">
+        <p class="error-message"></p>
       </div>
       <div class="form-action">
         <div class="input-field">

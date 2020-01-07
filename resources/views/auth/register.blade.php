@@ -8,12 +8,12 @@
     <div class="form-row justify-content-center">
       <div class="form-group col-md-3">
         <label for="email">Email</label>
-        <input type="email" class="form-control" name="email" id="email" required placeholder="Email" value="{{ old('email') }}">
+        <input type="email" class="form-control" name="email" id="email" autocomplete="off" required placeholder="Email" value="{{ old('email') }}">
         <p class="error-message">@ERROR('email') {{ $message }} @ENDERROR</p>
       </div>
       <div class="form-group col-md-3">
         <label for="password">Contraseña</label>
-        <input type="password" class="form-control" name="password" id="password" placeholder="***********">
+        <input type="password" class="form-control" autocomplete="off" name="password" id="password" placeholder="***********">
         <p class="error-message">@ERROR('password') {{ $message }} @ENDERROR</p>
       </div>
     </div>
@@ -32,7 +32,7 @@
     <div class="form-row justify-content-center">
       <div class="form-group col-md-3">
         <label for="name">Nombre de usuario</label>
-        <input type="text" class="form-control" name="name" id="name" required placeholder="Nombre de usuario" value="{{ old('name') }}">
+        <input type="text" class="form-control" name="name" id="name" required autocomplete="off" placeholder="Nombre de usuario" value="{{ old('name') }}">
         <p class="error-message">@ERROR('name') {{ $message }} @ENDERROR</p>
       </div>
     </div>

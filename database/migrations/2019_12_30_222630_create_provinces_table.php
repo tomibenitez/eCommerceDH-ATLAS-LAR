@@ -31,9 +31,9 @@ class CreateProvincesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provinces');
         Schema::table('addresses', function(Blueprint $table){
             $table->dropForeign('addresses_province_id_foreign');
         });
+        Schema::dropIfExists('provinces');
     }
 }

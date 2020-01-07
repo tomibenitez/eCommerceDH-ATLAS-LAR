@@ -6,10 +6,14 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Address;
+use App\Product;
 
 class User extends Authenticatable
 {
     use Notifiable;
+
+    const ADMIN_TYPE = 'admin';
+    const DEFAULT_TYPE = 'default';
 
     /**
      * The attributes that are mass assignable.
@@ -38,8 +42,37 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    static $validations = [
+      'name' => 'required|string|min:5|max:20',
+      'email' => 'required|string|email|max:180|unique:users',
+      'password' => 'required|string|min:8|confirmed',
+      'userPic' => 'file|image|max:2500'
+    ];
+
     public function address()
     {
       return $this->belongsTo('App\Address');
+    }
+
+    public function isAdmin()
+    {
+        return $this->type == self::ADMIN_TYPE;
+    }
+
+    public function makeAdmin()
+    {
+        $this->type = self::ADMIN_TYPE;
+        $this->save();
+    }
+
+    public function removeAdmin()
+    {
+        $this->type = self::DEFAULT_TYPE;
+        $this->save();
+    }
+
+    public function createdProducts()
+    {
+        return $this->hasMany(Product::class, 'admin_id');
     }
 }

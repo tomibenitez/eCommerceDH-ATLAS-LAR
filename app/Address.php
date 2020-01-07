@@ -12,11 +12,11 @@ class Address extends Model
 
     public function users()
     {
-        return $this->hasMany('App\User');
+        return $this->hasMany(User::class);
     }
 
     public function province()
     {
-      return $this->belongsTo('App\Province');
+      return $this->belongsTo(Province::class);
     }
 }

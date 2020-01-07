@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\User;
 
 class CreateUsersTable extends Migration
 {
@@ -31,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('user_pic');
             $table->unsignedBigInteger('address_id')->nullable();
             $table->rememberToken();
+            $table->string('type')->default(User::DEFAULT_TYPE);
             $table->timestamps();
         });
     }
