@@ -14,7 +14,7 @@ class Product extends Model
       'name' => 'required|string|max:200',
       'description' => 'required|string|min:20',
       'category_id' => 'required|numeric|min:0',
-      'price' => 'required|numeric|min:0',
+      'price' => 'required|numeric|min:0|max:999999.99',
       'picture' => 'required|file|image|max:10000',
     ];
 

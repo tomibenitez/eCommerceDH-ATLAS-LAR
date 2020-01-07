@@ -27,6 +27,6 @@ Route::post('/user/profile/add-address', 'UserProfileController@AddAddress')->na
 
 Route::get('/admin', 'AdminController@showDashBoard')->name('admin')->middleware('admin');
 
-Route::get('/products', 'productController@index')->name('products');
-Route::get('/products/{product}', 'productController@show')->name('product.show');
+Route::get('/products', 'ProductController@index')->name('products');
+Route::get('/products/{product}', 'ProductController@show')->name('product.show');
 Route::post('/products', 'ProductController@store');
