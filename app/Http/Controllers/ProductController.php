@@ -28,6 +28,6 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        return view('product.details', compact('id'));
+        return view('product.details')->with(['product' => Product::find($id)]);
     }
 }

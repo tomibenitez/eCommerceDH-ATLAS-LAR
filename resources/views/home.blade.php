@@ -136,9 +136,7 @@
       <p>All rights reserved © 2019.</p>
     </div>
   </footer>
-
-<script src="js/circular-carousel.js" charset="utf-8"></script>
-<script src="js/main.js" charset="utf-8"></script>
-
 </body>
+<script src="/js/circular-carousel.js" charset="utf-8"></script>
+<script src="/js/main.js" charset="utf-8"></script>
 </html>
