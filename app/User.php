@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Address;
 use App\Product;
+use App\Cart;
 
 class User extends Authenticatable
 {
@@ -74,5 +75,10 @@ class User extends Authenticatable
     public function createdProducts()
     {
         return $this->hasMany(Product::class, 'admin_id');
+    }
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
     }
 }

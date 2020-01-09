@@ -23,5 +23,12 @@ class UsersTableSeeder extends Seeder
         'created_at' => Carbon\Carbon::now()->toDateTimeString(),
         'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
       ]);
+
+      DB::table('carts')->insert([
+        'user_id' => '1',
+        'counter' => '0',
+        'created_at' => Carbon\Carbon::now()->toDateTimeString(),
+        'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
+      ]);
     }
 }

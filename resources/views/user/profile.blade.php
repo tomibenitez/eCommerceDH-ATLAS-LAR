@@ -16,10 +16,21 @@
         <button type="button" id="toHist" class="btn btn-white">Historial</button>
       </div>
       <ul>
-        <li>
-          <a href="#">Nombre del ítem</a>
-          <span>Precio</span>
-        </li>
+        @forelse (Auth::user()->cart->products as $product)
+          <li>
+            <a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a>
+            <span>${{ number_format($product->price, 2) }}</span>
+            <form class="cart__remove-item" action="{{ route('products.remove-from-cart') }}" method="post">
+              @CSRF
+              <input type="hidden" name="product" value="{{ $product->id }}">
+              <button type="submit" class="btn-remove">Quitar del carrito</button>
+            </form>
+          </li>
+        @empty
+          <div class="p-3">
+            No tienes ningún producto en tu carrito. Mirá nuestro <a href="{{ route('products') }}">catálogo de productos</a> y encontrá lo que buscás.
+          </div>
+        @endforelse
       </ul>
     </div>
     <div class="hist">

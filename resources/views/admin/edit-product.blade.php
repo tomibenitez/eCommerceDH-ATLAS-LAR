@@ -9,51 +9,22 @@
     <h3>{{ Auth::user()->name }}</h3>
   </div>
 
-  <section class="panel">
-    <h3 class="panel__header">Hola!</h3>
-    <div class="panel__content">
-      <p>Este es tu dash-board. Acá podés ver, editar y hasta eliminar todos los productos que creaste.</p>
-      <hr>
-      <ul class="list-group">
-
-        @forelse ($products as $product)
-            <li class="list-group__item">
-              <a href="{{ $product->path() }}" class="w-50">{{ $product->name }} id: {{ $product->id }}</a>
-              <div>
-                <span class="w-25">{{ $product->created_at }}</span>
-                <a href="{{ route('product.edit', ['product' => $product->id]) }}">Editar</a>
-                <form action="{{ route('products') }}" method="post">
-                  @csrf
-                  @method('DELETE')
-                  <input type="hidden" name="product" value="{{ $product->id }}">
-                  <button type="submit">Eliminar</button>
-                </form>
-              </div>
-            </li>
-        @empty
-            No tienes ningún producto creado!
-        @endforelse
-      </ul>
-
-    </div>
-  </section>
-
   <section class="panel panel-with-form">
-    <h3 class="panel__header">Creá un producto nuevo!</h3>
+    <h3 class="panel__header">Editá tu producto!</h3>
     <div class="panel__content">
-      <form action="{{ route('products') }}" method="post" enctype="multipart/form-data">
+      <form action="" method="post" enctype="multipart/form-data">
 
         @CSRF
 
         <div class="input-field">
           <label for="name">Nombre</label>
-          <input id="name" type="text" name="name" value="{{ old('name') }}">
+          <input id="name" type="text" name="name" value="{{ $product->name }}">
           <p class="error-message">@error('name'){{ $message }}@enderror</p>
         </div>
 
         <div class="input-field textarea-lg">
           <label for="description">Descripción</label>
-          <textarea name="description" id="description" rows="8" cols="80" placeholder="Dale a tu producto una descripción que ayude al usuario a decidir! :D...">{{ old('description') }}</textarea>
+          <textarea name="description" id="description" rows="8" cols="80" placeholder="Dale a tu producto una descripción que ayude al usuario a decidir! :D...">{{ $product->description }}</textarea>
           <p class="error-message">@error('description'){{ $message }}@enderror</p>
         </div>
 
@@ -61,7 +32,7 @@
           <label for="category_id">Categoría</label>
           <select id="category_id" name="category_id">
           @FOREACH($categories as $category)
-            <option value="{{ $category->id }}" @IF(old('category_id') === $category->id) selected @ENDIF>{{ $category->category }}</option>
+            <option value="{{ $category->id }}" @IF($product->category->id === $category->id) selected @ENDIF>{{ $category->category }}</option>
           @ENDFOREACH
           </select>
           <p class="error-message">@error('category_id'){{ $message }}@enderror</p>
@@ -69,7 +40,7 @@
 
         <div class="input-field">
          <label for="price">Precio</label>
-         <input id="price" type="text" name="price" value="{{ old('price') }}">
+         <input id="price" type="text" name="price" value="{{ $product->price }}">
          <p class="error-message">@ERROR('price') {{ $message }} @ENDERROR</p>
         </div>
 
@@ -82,6 +53,7 @@
         <div class="form-action">
           <button type="submit" class="btn">Confirmar cambios</button>
         </div>
+
 
       </form>
     </div>

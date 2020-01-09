@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
           ProvincesTableSeeder::class,
           UsersTableSeeder::class,
           CategoriesSeeder::class,
+          ProductsTableSeed::class
         ]);
     }
 }

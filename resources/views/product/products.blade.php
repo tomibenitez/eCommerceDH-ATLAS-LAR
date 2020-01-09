@@ -58,12 +58,19 @@
           <img src="/storage/products_pics/{{ $product->picture }}" alt="">
           <div class="product__details">
             <span>{{ $product->name }}</span>
-            <span>${{ $product->price }}</span>
+            <span>${{ number_format($product->price, 2) }}</span>
           </div>
         </div>
         <div class="product__action">
           <a href="{{ route('product.show', ['product' => $product->id]) }}" class="btn btn-white">See more</a>
-          <button type="button" id="addToCart" class="btn">Add to cart</button>
+          <button type="button" id="addToCart" onclick="
+                                                  event.preventDefault();
+                                                  document.getElementById('add-to-cart_form{{ $product->id }}').submit();"
+          class="btn">Add to cart</button>
+          <form action="/products/add-to-cart" id="add-to-cart_form{{ $product->id }}" method="post" style="display: none;">
+            @csrf
+            <input type="hidden" name="product" value="{{ $product->id }}">
+          </form>
         </div>
       </article>
     @endforeach
