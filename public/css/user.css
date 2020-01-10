@@ -71,9 +71,10 @@ section.cart-hist-container{
       }
     .cart .cart__header{
       background: dodgerblue;
-      padding: 1rem;
+      padding: 1.5rem;
       flex: 0;
       font-size: 1.4rem;
+      padding-bottom: calc(1.5rem + 5px);
 
       display: flex;
       justify-content: space-between;
@@ -119,8 +120,7 @@ section.cart-hist-container{
     }
     .hist .hist__header {
       color: dodgerblue;
-      padding: 1rem;
-      padding-bottom: calc(1rem - 5px);
+      padding: 1.5rem;
       flex: 0;
       font-size: 1.4rem;
       border-bottom: 5px solid dodgerblue;
