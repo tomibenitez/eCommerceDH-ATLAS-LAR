@@ -21,7 +21,17 @@ class CartController extends Controller
     public function removeProduct(Request $req)
     {
         $req->user()->cart->products()->detach($req['product']);
-        
+
         return \redirect()->back();
+    }
+
+    public function buyProducts(Request $req)
+    {
+        $products = $req->user()->cart->products;
+
+        foreach ($products as $key => $product) {
+          $req->user()->
+          $product->id;
+        }
     }
 }

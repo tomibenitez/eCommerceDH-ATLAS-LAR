@@ -13,7 +13,7 @@
       </p>
     </div>
     <div class="product-price">
-      <span>${{ number_format($product->price, 2) }}</span>
+      <span>{{ $product->price() }}</span>
     </div>
     <form action="/products/add-to-cart" method="post">
       @csrf

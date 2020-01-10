@@ -13,13 +13,17 @@
     <div class="cart">
       <div class="cart__header">
         <h5>Carrito</h5>
+        <form action="/buy-cart" method="post">
+          @CSRF
+          <button type="submit" class="btn-buy btn-white">Comprar carrito</button>
+        </form>
         <button type="button" id="toHist" class="btn btn-white">Historial</button>
       </div>
       <ul>
         @forelse (Auth::user()->cart->products as $product)
           <li>
             <a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a>
-            <span>${{ number_format($product->price, 2) }}</span>
+            <span>{{ $product->price() }}</span>
             <form class="cart__remove-item" action="{{ route('products.remove-from-cart') }}" method="post">
               @CSRF
               <input type="hidden" name="product" value="{{ $product->id }}">
@@ -39,11 +43,17 @@
         <button type="button" id="toCart" class="btn">Carrito</button>
       </div>
       <ul>
-        <li>
-          <a href="#">Nombre del ítem</a>
-          <span>Precio</span>
-          <span>xx/xx/xx</span>
-        </li>
+        @forelse (Auth::user()->boughtProducts as $product)
+          <li>
+            <a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a>
+            <span>{{ $product->price() }}</span>
+            <span>{{ $product->pivot->created_at }}</span>
+          </li>
+        @empty
+          <div class="p-3">
+            No compraste ningún producto aún!
+          </div>
+        @endforelse
       </ul>
     </div>
   </section>

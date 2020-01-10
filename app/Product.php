@@ -38,4 +38,14 @@ class Product extends Model
     {
         return $this->belongsToMany(Cart::class, 'carts_products', 'product_id', 'cart_id');
     }
+
+    public function boughtByUsers()
+    {
+        return $this->belongsToMany(User::class, 'user_bought_product')->withTimestamps();
+    }
+
+    public function price()
+    {
+        return '$'. \number_format($this->price, 2);
+    }
 }

@@ -58,7 +58,7 @@
           <img src="/storage/products_pics/{{ $product->picture }}" alt="">
           <div class="product__details">
             <span>{{ $product->name }}</span>
-            <span>${{ number_format($product->price, 2) }}</span>
+            <span>{{ $product->price() }}</span>
           </div>
         </div>
         <div class="product__action">
