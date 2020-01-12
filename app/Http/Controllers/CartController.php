@@ -25,13 +25,15 @@ class CartController extends Controller
         return \redirect()->back();
     }
 
-    public function buyProducts(Request $req)
+    public function buyCart(Request $req)
     {
-        $products = $req->user()->cart->products;
+        $req->user()->cart->update([
+          'is_active' => '0',
+          'bought_at' => \Carbon\Carbon::now()->toDateTimeString(),
+        ]);
 
-        foreach ($products as $key => $product) {
-          $req->user()->
-          $product->id;
-        }
+        $req->user()->createNewCart();
+
+        return \redirect()->back();
     }
 }

@@ -79,11 +79,26 @@ class User extends Authenticatable
 
     public function cart()
     {
-        return $this->hasOne(Cart::class);
+        return $this->belongsTo(Cart::class);
     }
 
-    public function boughtProducts()
+    public function carts()
     {
-        return $this->belongsToMany(Product::class, 'user_bought_product')->withTimestamps();
+        return $this->hasMany(Cart::class);
+    }
+
+    public function boughtCarts()
+    {
+        return $this->carts()->where('is_active','0')->get()->load('products');
+    }
+
+    public function createNewCart()
+    {
+      $newCart = Cart::create([
+        'user_id' => $this->id,
+      ]);
+
+      $this->cart()->associate($newCart);
+      $this->save();
     }
 }

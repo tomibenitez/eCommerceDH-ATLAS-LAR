@@ -72,6 +72,7 @@ section.cart-hist-container{
     .cart .cart__header{
       background: dodgerblue;
       padding: 1rem;
+      padding-bottom: calc(1rem + 5px);
       flex: 0;
       font-size: 1.4rem;
 
@@ -120,7 +121,6 @@ section.cart-hist-container{
     .hist .hist__header {
       color: dodgerblue;
       padding: 1rem;
-      padding-bottom: calc(1rem - 5px);
       flex: 0;
       font-size: 1.4rem;
       border-bottom: 5px solid dodgerblue;
@@ -300,22 +300,24 @@ section.panel{
   .btn-remove:hover {
     background: rgba(90, 40, 50, 0.3);
     }
-.btn-buy {
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 10px;
-  padding: 0.5rem;
-  opacity: 0.8;
-  transition: opacity 0.1s;
-  cursor: pointer;
-  text-decoration: none;
-  font-size: 0.8rem;
-  margin-left: 150px;
-  }
-  .btn-buy:hover {
-    opacity: 1;
+
+  .btn-buy {
+    background: white;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.1s;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.8rem;
+    margin-left: auto;
+    margin-right: 1rem;
     }
+    .btn-buy:hover {
+      opacity: 1;
+      }
 
 .p-3{
   padding: 3rem;

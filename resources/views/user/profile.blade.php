@@ -13,10 +13,12 @@
     <div class="cart">
       <div class="cart__header">
         <h5>Carrito</h5>
-        <form action="/buy-cart" method="post">
-          @CSRF
-          <button type="submit" class="btn-buy btn-white">Comprar carrito</button>
-        </form>
+        @IF (Auth::user()->cart->products->isNotEmpty())
+          <button type="button" onclick="document.getElementById('buy-form').submit()" class="btn-buy btn-white">Comprar carrito</button>
+          <form action="/buy-cart" style="display: none" id="buy-form" method="post">
+            @CSRF
+          </form>
+        @ENDIF
         <button type="button" id="toHist" class="btn btn-white">Historial</button>
       </div>
       <ul>
@@ -43,11 +45,12 @@
         <button type="button" id="toCart" class="btn">Carrito</button>
       </div>
       <ul>
-        @forelse (Auth::user()->boughtProducts as $product)
+        {{-- @forelse (Auth::user()->boughtProducts as $product) --}}
+        @forelse (Auth::user()->boughtCarts() as $cart)
           <li>
-            <a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a>
-            <span>{{ $product->price() }}</span>
-            <span>{{ $product->pivot->created_at }}</span>
+            <a href="{{ route('product.show', ['product' => $cart->id]) }}">{{ $cart->is_active }}</a>
+            <span>{{ $cart->user_id }}</span>
+            <span>{{ $cart->bought_at }}</span>
           </li>
         @empty
           <div class="p-3">

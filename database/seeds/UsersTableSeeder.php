@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
         'password' => '$2y$10$WSdCIKv6M8br6vATFwq8guoNqSoI4Jz.jGfNKhdMuL2m2mz5Y3RK2',
         'user_pic' => 'default-avatar.jpg',
         'address_id' => '1',
+        'cart_id' => '1',
         'remember_token' => Hash::make('tomtomtom'),
         'type' => App\User::ADMIN_TYPE,
         'created_at' => Carbon\Carbon::now()->toDateTimeString(),
@@ -26,7 +27,7 @@ class UsersTableSeeder extends Seeder
 
       DB::table('carts')->insert([
         'user_id' => '1',
-        'counter' => '0',
+        'is_active' => '1',
         'created_at' => Carbon\Carbon::now()->toDateTimeString(),
         'updated_at' => Carbon\Carbon::now()->toDateTimeString(),
       ]);

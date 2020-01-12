@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('user_pic');
             $table->unsignedBigInteger('address_id')->nullable();
+            $table->unsignedBigInteger('cart_id')->nullable();
             $table->rememberToken();
             $table->string('type')->default(User::DEFAULT_TYPE);
             $table->timestamps();
