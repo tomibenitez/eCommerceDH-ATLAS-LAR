@@ -89,7 +89,7 @@ class User extends Authenticatable
 
     public function boughtCarts()
     {
-        return $this->carts()->where('is_active','0')->get()->load('products');
+        return $this->carts()->where('is_active','0')->get()->loadMissing('products');
     }
 
     public function createNewCart()

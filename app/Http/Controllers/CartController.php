@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
+use App\Cart;
 
 class CartController extends Controller
 {
@@ -35,5 +37,15 @@ class CartController extends Controller
         $req->user()->createNewCart();
 
         return \redirect()->back();
+    }
+
+    public function showBoughtCart(Cart $cart)
+    {
+        if(Auth::user()->carts->contains($cart) && $cart->is_active == false){
+          dd($cart);
+        }
+        else{
+          return \abort(404);
+        }
     }
 }

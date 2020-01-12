@@ -10,6 +10,8 @@ class Cart extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['products'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -18,5 +20,16 @@ class Cart extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class, 'carts_products', 'cart_id', 'product_id');
+    }
+
+    public function total()
+    {
+        $total = $this->products->reduce(function ($carry, $product){
+            return $carry + $product->price;
+        });
+
+        $product = new Product();
+
+        return $product->price($total);
     }
 }

@@ -35,4 +35,5 @@ Route::get('/products/{product}', 'ProductController@show')->name('product.show'
 Route::post('/products', 'ProductController@store');
 Route::post('/products/add-to-cart', 'CartController@addProduct')->name('products.add-to-cart')->middleware('auth');
 Route::post('/products/remove-from-cart', 'CartController@removeProduct')->name('products.remove-from-cart')->middleware('auth');
-Route::post('buy-cart', 'CartController@buyCart')->middleware('auth');
+Route::post('/buy-cart', 'CartController@buyCart')->middleware('auth');
+Route::get('/bought-cart/{cart}', 'CartController@showBoughtCart')->name('bought-cart.show')->middleware('auth');

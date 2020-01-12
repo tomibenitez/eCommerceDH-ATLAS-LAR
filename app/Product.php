@@ -44,8 +44,14 @@ class Product extends Model
         return $this->belongsToMany(User::class, 'user_bought_product')->withTimestamps();
     }
 
-    public function price()
+    public function price($notFormattedPrice = null)
     {
+        if (\is_float($notFormattedPrice) && $notFormattedPrice != null) {
+
+          return '$'. \number_format($notFormattedPrice, 2);
+
+        }
+
         return '$'. \number_format($this->price, 2);
     }
 }

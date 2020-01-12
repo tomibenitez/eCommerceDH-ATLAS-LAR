@@ -48,9 +48,9 @@
         {{-- @forelse (Auth::user()->boughtProducts as $product) --}}
         @forelse (Auth::user()->boughtCarts() as $cart)
           <li>
-            <a href="{{ route('product.show', ['product' => $cart->id]) }}">{{ $cart->is_active }}</a>
-            <span>{{ $cart->user_id }}</span>
-            <span>{{ $cart->bought_at }}</span>
+            <a href="{{ route('bought-cart.show', ['cart' => $cart->id]) }}">{{ $cart->bought_at }}</a>
+            <span>{{ $cart->products->count() }}</span>
+            <span>{{ $cart->total() }}</span>
           </li>
         @empty
           <div class="p-3">
