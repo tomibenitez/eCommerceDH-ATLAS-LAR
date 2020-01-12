@@ -75,6 +75,7 @@ section.cart-hist-container{
       padding-bottom: calc(1rem + 5px);
       flex: 0;
       font-size: 1.4rem;
+      padding-bottom: calc(1.5rem + 5px);
 
       display: flex;
       justify-content: space-between;
