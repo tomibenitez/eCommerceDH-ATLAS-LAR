@@ -301,10 +301,9 @@ section.panel{
     background: rgba(90, 40, 50, 0.3);
     }
 
-  .btn-buy {
+  .btn-head {
     background: white;
     color: black;
-    border: none;
     border-radius: 10px;
     padding: 0.5rem;
     opacity: 0.8;
@@ -312,12 +311,16 @@ section.panel{
     cursor: pointer;
     text-decoration: none;
     font-size: 0.8rem;
-    margin-left: auto;
     margin-right: 1rem;
+    border: none;
     }
-    .btn-buy:hover {
+    .btn-head:hover {
       opacity: 1;
-      }
+    }
+
+  .btn-clear {
+    margin-left: auto;
+    }
 
 .p-3{
   padding: 3rem;
@@ -374,6 +377,9 @@ section.panel{
     .hist {
       box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
       }
+      .hist .hist__header  {
+        padding-bottom: calc(1rem + 5px);
+        }
       section.cart-hist-container .btn {
         display: none;
         }

@@ -14,8 +14,14 @@
       <div class="cart__header">
         <h5>Carrito</h5>
         @IF (Auth::user()->cart->products->isNotEmpty())
-          <button type="button" onclick="document.getElementById('buy-form').submit()" class="btn-buy btn-white">Comprar carrito</button>
+          <button type="button" onclick="document.getElementById('clear-form').submit()" class="btn-head btn-clear btn-white">Vaciar carrito</button>
+          <button type="button" onclick="document.getElementById('buy-form').submit()" class="btn-head btn-buy btn-white">Comprar carrito</button>
+
           <form action="/buy-cart" style="display: none" id="buy-form" method="post">
+            @CSRF
+          </form>
+
+          <form action="{{ route('products.remove-from-cart') }}" style="display: none" id="clear-form" method="post">
             @CSRF
           </form>
         @ENDIF
@@ -28,7 +34,7 @@
             <span>{{ $product->price() }}</span>
             <form class="cart__remove-item" action="{{ route('products.remove-from-cart') }}" method="post">
               @CSRF
-              <input type="hidden" name="product" value="{{ $product->id }}">
+              <input type="hidden" name="product" value="{{ $product->pivot->id }}">
               <button type="submit" class="btn-remove">Quitar del carrito</button>
             </form>
           </li>

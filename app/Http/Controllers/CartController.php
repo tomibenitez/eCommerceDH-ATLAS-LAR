@@ -22,7 +22,21 @@ class CartController extends Controller
 
     public function removeProduct(Request $req)
     {
-        $req->user()->cart->products()->detach($req['product']);
+        if (isset($req['product'])) {
+
+          $product = $req->user()->cart->products->first(function ($product, $key) use($req){
+            return $product->pivot->id == $req['product'];
+          });
+
+          $product->pivot->delete();
+
+        }else{
+
+          foreach ($req->user()->cart->products as $key => $product) {
+            $product->pivot->delete();
+          }
+
+        }
 
         return \redirect()->back();
     }
@@ -42,7 +56,7 @@ class CartController extends Controller
     public function showBoughtCart(Cart $cart)
     {
         if(Auth::user()->carts->contains($cart) && $cart->is_active == false){
-          dd($cart);
+          return view('user.cart')->with(['cart' => $cart]);
         }
         else{
           return \abort(404);
