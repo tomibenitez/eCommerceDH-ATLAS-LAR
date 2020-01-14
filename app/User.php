@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use App\Address;
 use App\Product;
 use App\Cart;
+use App\Category;
 
 class User extends Authenticatable
 {
@@ -94,11 +95,16 @@ class User extends Authenticatable
 
     public function createNewCart()
     {
-      $newCart = Cart::create([
-        'user_id' => $this->id,
-      ]);
+        $newCart = Cart::create([
+          'user_id' => $this->id,
+        ]);
 
-      $this->cart()->associate($newCart);
-      $this->save();
+        $this->cart()->associate($newCart);
+        $this->save();
+    }
+
+    public function favCategories()
+    {
+        return $this->belongsToMany(Category::class, 'user_likes_category')->withPivot(['id']);
     }
 }

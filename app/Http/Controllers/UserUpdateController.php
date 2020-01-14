@@ -111,6 +111,19 @@ class UserUpdateController extends Controller
             }
 
         }
+    }
 
+    public function setFavCategories(Request $req)
+    {
+        foreach ($req->user()->favCategories as $category) {
+          $category->pivot->delete();
+        }
+
+        $categories = $req['favCategories'];
+
+        $req->user()->favCategories()->attach($categories);
+        $req->user()->save();
+
+        return \redirect()->back();
     }
 }

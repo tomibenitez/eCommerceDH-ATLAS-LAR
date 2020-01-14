@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\NewProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Http\Requests\ProductsFilterRequest;
 use App\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Category;
@@ -23,9 +24,14 @@ class ProductController extends Controller
         return \redirect(route('admin'));
     }
 
-    public function index()
+    public function index(ProductsFilterRequest $req)
     {
-        return view('product.products')->with('products', Product::all());
+        if ($req->has('category')) {
+          
+        }
+        return view('product.products')
+            ->with('products', Product::all())
+            ->with('categories', Category::all());
     }
 
     public function show($id)

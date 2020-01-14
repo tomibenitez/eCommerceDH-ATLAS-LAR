@@ -7,45 +7,43 @@
       <div class="input-field">
         <label for="category">Category</label>
         <select name="category" id="category">
-          <option value="all">All</option>
-          <option value="surfboards">Surfboards</option>
-          <option value="accesories">Accesories</option>
-          <option value="neoprene">Neoprene</option>
-          <option value="clothes">Clothes</option>
-          <option value="footwear">Footwear</option>
+          <option value="0">Todas</option>
+          @foreach ($categories as $category)
+            <option value="{{ $category->id }}" @IF (app('request')->input('category') == $category->id) selected @ENDIF>{{ $category->display_name }}</option>
+          @endforeach
         </select>
         </label>
       </div>
       <div class="input-field price">
         <label for="minprice">Min price</label>
         <select name="minPrice" id="minprice">
-          <option value="noMin">No minimun price</option>
-          <option value="1">$1.000</option>
-          <option value="2">$2.000</option>
-          <option value="3">$4.000</option>
-          <option value="4">$7.000</option>
-          <option value="5">$10.000</option>
+          <option value="0" @IF (app('request')->input('minPrice') == '0') selected @ENDIF>Sin precio mínimo</option>
+          <option value="100" @IF (app('request')->input('minPrice') == '100') selected @ENDIF>$100</option>
+          <option value="1000" @IF (app('request')->input('minPrice') == '1000') selected @ENDIF>$1,000</option>
+          <option value="10000" @IF (app('request')->input('minPrice') == '10000') selected @ENDIF>$10,000</option>
+          <option value="50000" @IF (app('request')->input('minPrice') == '50000') selected @ENDIF>$50,000</option>
+          <option value="200000" @IF (app('request')->input('minPrice') == '200000') selected @ENDIF>$200,000</option>
         </select>
         </label>
       </div>
       <div class="input-field price">
         <label for="minprice">Max price</label>
         <select name="maxPrice" id="maxprice">
-          <option value="noMax">No maximun price</option>
-          <option value="1">$3.000</option>
-          <option value="2">$5.000</option>
-          <option value="3">$6.000</option>
-          <option value="4">$9.000</option>
-          <option value="5">$12.000</option>
+          <option value="0" @IF (app('request')->input('maxPrice') == '0') selected @ENDIF>Sin precio máximo</option>
+          <option value="1000" @IF (app('request')->input('maxPrice') == '1000') selected @ENDIF>$1,000</option>
+          <option value="10000" @IF (app('request')->input('maxPrice') == '10000') selected @ENDIF>$10,000</option>
+          <option value="50000" @IF (app('request')->input('maxPrice') == '50000') selected @ENDIF>$50,000</option>
+          <option value="200000" @IF (app('request')->input('maxPrice') == '200000') selected @ENDIF>$200,000</option>
+          <option value="400000" @IF (app('request')->input('maxPrice') == '400000') selected @ENDIF>$400,000</option>
         </select>
         </label>
       </div>
       <div class="input-field ">
         <label for="minprice">Sort by:</label>
         <div class="sorts">
-          <input type="radio" name="sortBy" value="date" id="date" checked><label for="date">Date <hr> </label>
-          <input type="radio" name="sortBy" value="price" id="price"><label for="price">Price <hr> </label>
-          <input type="radio" name="sortBy" value="name" id="name"><label for="name">Name <hr> </label>
+          <input type="radio" name="sortBy" @IF (app('request')->input('sortBy') == 'date') checked @ENDIF value="date" id="date" checked><label for="date">Date <hr> </label>
+          <input type="radio" name="sortBy" @IF (app('request')->input('sortBy') == 'price') checked @ENDIF value="price" id="price"><label for="price">Price <hr> </label>
+          <input type="radio" name="sortBy" @IF (app('request')->input('sortBy') == 'name') checked @ENDIF value="name" id="name"><label for="name">Name <hr> </label>
         </div>
       </div>
       <button type="submit" class="btn btn-white">Search</button>

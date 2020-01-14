@@ -69,25 +69,14 @@
 
   <section class="settings panel">
     <h5 class="panel__header">Selecciona las categorías de las cuales te gustaría recibir ofertas:</h5>
-    <form action="/user/update_fav_categories" method="post">
+    <form action="{{ route('set-fav-categories') }}" method="post">
 
       @CSRF
-
-      <div class="input-field">
-        <input id="boards" type="checkbox" name="favCategories[]" value="1"><label for="boards">Tablas</label>
-      </div>
-      <div class="input-field">
-        <input id="accesories" type="checkbox" name="favCategories[]" value="2"><label for="accesories">Accesorios</label>
-      </div>
-      <div class="input-field">
-        <input id="neoprene" type="checkbox" name="favCategories[]" value="3"><label for="neoprene">Neoprene</label>
-      </div>
-      <div class="input-field">
-        <input id="clothes" type="checkbox" name="favCategories[]" value="4"><label for="clothes">Ropa</label>
-      </div>
-      <div class="input-field">
-        <input id="footwear" type="checkbox" name="favCategories[]" value="5"><label for="footwear">Calzado</label>
-      </div>
+      @foreach ($categories as $category)
+        <div class="input-field">
+          <input id="{{ $category->category }}" type="checkbox" @IF (Auth::user()->favCategories->contains($category)) checked  @ENDIF name="favCategories[]" value="{{ $category->id }}"><label for="{{ $category->category }}">{{ $category->display_name }}</label>
+        </div>
+      @endforeach
 
       <button type="submit">Actualizar</button>
     </form>

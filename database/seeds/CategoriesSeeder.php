@@ -12,11 +12,26 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-          ['category' => 'boards'],
-          ['category' => 'accesories'],
-          ['category' => 'neoprene'],
-          ['category' => 'clothes'],
-          ['category' => 'footwear'],
+          [
+            'category' => 'boards',
+            'display_name' => 'Tablas',
+          ],
+          [
+            'category' => 'accesories',
+            'display_name' => 'Accesorios',
+          ],
+          [
+            'category' => 'neoprene',
+            'display_name' => 'Neoprene',
+          ],
+          [
+            'category' => 'clothes',
+            'display_name' => 'Ropa',
+          ],
+          [
+            'category' => 'footwear',
+            'display_name' => 'Calzado',
+          ],
         ]);
     }
 }

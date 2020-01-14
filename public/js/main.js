@@ -63,3 +63,50 @@
   $('#toCart').on('click', e =>{
     $('.hist').css('left','0%');
   })
+
+// --------------- Filter for min and max price ----------------------------
+
+  let minPrices = $('#minprice').children().filter( (index, price) => {
+    return parseInt(price.value) > 0;
+  });
+  let maxPrices = $('#maxprice').children().filter( (index, price) => {
+    return parseInt(price.value) > 0;
+  });
+
+  let operators = {
+    '<': (a, b) => {return a < b},
+    '>': (a, b) => {return a > b}
+  };
+
+  let updateMinMaxFilter = (receiver, commander, operator) => {
+    let value = commander.children('option:selected').val();
+    value = parseInt(value);
+
+    if (value > 0) {
+      receiver.each((key, price) => {
+
+        if (operator(parseInt(price.value), value)) {
+          price.style.display = 'block';
+        }else{
+          price.style.display = 'none';
+        }
+
+      })
+    }else{
+      receiver.each((key, price) => {
+        price.style.display = 'block';
+      });
+    }
+  }
+
+  $('#minprice').change(e => {
+
+    updateMinMaxFilter(maxPrices, $(e.target), operators['>']);
+
+  });
+
+  $('#maxprice').change(e => {
+
+    updateMinMaxFilter(minPrices, $(e.target), operators['<']);
+
+  });

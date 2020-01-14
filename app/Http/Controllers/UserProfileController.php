@@ -8,12 +8,13 @@ use App\Address;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Province;
+use App\Category;
 
 class UserProfileController extends Controller
 {
     public function showProfile()
     {
-      return view('user.profile');
+      return view('user.profile')->with(['categories' => Category::all()]);
     }
 
     public function showProfileEdit()

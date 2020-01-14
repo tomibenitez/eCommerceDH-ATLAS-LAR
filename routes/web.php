@@ -24,6 +24,7 @@ Route::get('/user/profile/edit', 'UserProfileController@showProfileEdit')->name(
 Route::post('/user/profile/edit', 'UserUpdateController@updateUserInfo')->name('user/profile/edit')->middleware('auth');
 Route::get('/user/profile/add-address', 'UserProfileController@showAddAddressForm')->name('user/profile/add-address')->middleware('auth','no.address');
 Route::post('/user/profile/add-address', 'UserProfileController@AddAddress')->name('user/profile/add-address')->middleware('auth');
+Route::post('/user/profile/set-fav-categories', 'UserUpdateController@setFavCategories')->name('set-fav-categories')->middleware('auth');
 
 Route::get('/admin', 'AdminController@showDashBoard')->name('admin')->middleware('auth','admin');
 Route::get('/admin/edit-product/{product}', 'ProductController@showEditForm')->name('product.edit')->middleware('auth','admin');
