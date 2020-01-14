@@ -65,48 +65,23 @@
   <section class="carousel__container">
     <div class="carousel">
       <div class="carousel__slider">
+        @foreach($categories as $category)
         <div class="slide">
-          <img src="images/surfboards-category.jpg" alt="">
+          <img src="/images/{{ $category->picture }}" alt="">
           <div class="slide__bottom">
-            <img src="images/icons/Surfboard.png" alt="">
-            <h4>TABLAS</h4>
+            <img src="images/icons/{{ $category->logo }}" alt="">
+            <h4>{{ strtoupper($category->display_name) }}</h4>
           </div>
+          <a href="{{ $category->urlToProducts() }}"></a>
         </div>
-        <div class="slide">
-          <img src="images/accesories-category.jpg" alt="">
-          <div class="slide__bottom">
-            <img src="images/icons/accesorios.png" alt="">
-            <h4>ACCESORIOS</h4>
-          </div>
-        </div>
-        <div class="slide">
-          <img src="images/neoprene-clothes3-category.jpg" alt="">
-          <div class="slide__bottom">
-            <img src="images/icons/neoprene-clothes.png" alt="">
-            <h4>NEOPRENE</h4>
-          </div>
-        </div>
-        <div class="slide">
-          <img src="images/clothes-category.jpg" alt="">
-          <div class="slide__bottom">
-            <img src="images/icons/clothes.png" alt="">
-            <h4>ROPA</h4>
-          </div>
-        </div>
-        <div class="slide">
-          <img src="images/footwear-category.jpg" alt="">
-          <div class="slide__bottom">
-            <img src="images/icons/footwear.png" alt="">
-            <h4>CALZADO</h4>
-          </div>
-        </div>
+        @endforeach
       </div>
     </div>
     <button class="carousel__arrow left">
-      <img src="images/icons/arrow.png" alt="">
+      <img src="images/icons/Arrow.png" alt="">
     </button>
     <button class="carousel__arrow right">
-      <img src="images/icons/arrow.png" alt="">
+      <img src="images/icons/Arrow.png" alt="">
     </button>
   </section>
   <section class="showreel__container">

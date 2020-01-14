@@ -19,4 +19,14 @@ class Category extends Model
     {
         return $this->belongsToMany(User::class, 'user_likes_category')->withPivot(['id']);
     }
+
+    public function urlToProducts()
+    {
+        return route('products', [
+          'category' => $this->id,
+          'minPrice' => '0',
+          'maxPrice' => '0',
+          'orderBy' => 'created_at',
+        ]);
+    }
 }

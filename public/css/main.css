@@ -7,7 +7,7 @@ body {
   background: #222;
   color: white;
   font-family: "open sans", sans-serif;
-
+  font-size: 30px;
   overflow-x: hidden;
 }
 .top-section-wrapper {
@@ -256,13 +256,25 @@ body {
     border-radius: 8px;
     overflow: hidden;
     height: 300px;
-  }
-  .carousel__slider .slide>img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    margin: 0 5%;
     }
+    .slide>a {
+      position: absolute;
+      width: 99%;
+      height: 99%;
+      background-color: rgba(255, 255, 255, 1);
+      opacity: 0;
+      transition: opacity 500ms;
+      }
+      .slide>a.on-hover {
+        opacity: .4;
+        transition: opacity 200ms;
+        }
+    .carousel__slider .slide>img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      margin: 0 5%;
+      }
     .carousel__slider .slide .slide__bottom {
       background: linear-gradient(to top, rgba(252, 252, 252, 1), rgba(255, 255, 255, 0.35));
       position: absolute;

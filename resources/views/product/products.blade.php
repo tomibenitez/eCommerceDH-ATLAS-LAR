@@ -41,9 +41,9 @@
       <div class="input-field ">
         <label for="minprice">Sort by:</label>
         <div class="sorts">
-          <input type="radio" name="sortBy" @IF (app('request')->input('sortBy') == 'date') checked @ENDIF value="date" id="date" checked><label for="date">Date <hr> </label>
-          <input type="radio" name="sortBy" @IF (app('request')->input('sortBy') == 'price') checked @ENDIF value="price" id="price"><label for="price">Price <hr> </label>
-          <input type="radio" name="sortBy" @IF (app('request')->input('sortBy') == 'name') checked @ENDIF value="name" id="name"><label for="name">Name <hr> </label>
+          <input type="radio" name="orderBy" @IF (app('request')->input('orderBy') == 'created_at') checked @ENDIF value="created_at" id="date" checked><label for="date">Date <hr> </label>
+          <input type="radio" name="orderBy" @IF (app('request')->input('orderBy') == 'price') checked @ENDIF value="price" id="price"><label for="price">Price <hr> </label>
+          <input type="radio" name="orderBy" @IF (app('request')->input('orderBy') == 'name') checked @ENDIF value="name" id="name"><label for="name">Name <hr> </label>
         </div>
       </div>
       <button type="submit" class="btn btn-white">Search</button>

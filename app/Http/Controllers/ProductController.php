@@ -26,9 +26,37 @@ class ProductController extends Controller
 
     public function index(ProductsFilterRequest $req)
     {
-        if ($req->has('category')) {
-          
+        if (
+            $req->has('category') &&
+            $req->has('minPrice') &&
+            $req->has('maxPrice') &&
+            $req->has('orderBy')
+        ){
+
+            $categories = [];
+            $categories[] = $req['category'];
+            if ($categories[0] == 0) {
+                $categories = ['1','2','3','4','5'];
+            }
+
+            $maxPrice = $req['maxPrice'];
+            if ($maxPrice < 1) {
+                $maxPrice = 999999;
+            }
+
+            $minPrice = $req['minPrice'];
+            $orderBy = $req['orderBy'];
+
+            return view('product.products')
+                ->with('products', Product::whereIn('category_id', $categories)
+                                            ->where('price', '>', $minPrice)
+                                            ->where('price', '<', $maxPrice)
+                                            ->orderBy($orderBy, 'asc')
+                                            ->get())
+                ->with('categories', Category::all());
+
         }
+
         return view('product.products')
             ->with('products', Product::all())
             ->with('categories', Category::all());

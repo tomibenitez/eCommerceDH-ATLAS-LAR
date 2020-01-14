@@ -73,7 +73,6 @@ section.cart-hist-container{
       background: dodgerblue;
       padding: 1rem;
       padding-bottom: calc(1rem + 5px);
-      flex: 0;
       font-size: 1.4rem;
 
       display: flex;
@@ -121,7 +120,6 @@ section.cart-hist-container{
     .hist .hist__header {
       color: dodgerblue;
       padding: 1rem;
-      flex: 0;
       font-size: 1.4rem;
       border-bottom: 5px solid dodgerblue;
 
@@ -129,6 +127,7 @@ section.cart-hist-container{
       justify-content: space-between;
       align-items: center;
       }
+
 section.panel{
   margin-top: 20px;
   background: #fff;
@@ -380,6 +379,9 @@ section.panel{
       .hist .hist__header  {
         padding-bottom: calc(1rem + 5px);
         }
+        .hist .hist__header h5 {
+          margin: 2px;
+          }
       section.cart-hist-container .btn {
         display: none;
         }

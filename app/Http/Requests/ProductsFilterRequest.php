@@ -29,9 +29,9 @@ class ProductsFilterRequest extends FormRequest
             'category' => 'required_with_all:minPrice,maxPrice,sortBy|integer',
             'minPrice' => 'required_with_all:category,maxPrice,sortBy|integer',
             'maxPrice' => 'required_with_all:minPrice,category,sortBy|integer',
-            'sortBy' => [
+            'orderBy' => [
               'required_with_all:minPrice,maxPrice,category',
-              Rule::in(['date', 'name', 'price']),
+              Rule::in(['created_at', 'name', 'price']),
             ]
         ];
     }

@@ -99,6 +99,9 @@
     }
   }
 
+  updateMinMaxFilter(maxPrices, $('#minprice'), operators['>']);
+  updateMinMaxFilter(minPrices, $('#maxprice'), operators['<']);
+
   $('#minprice').change(e => {
 
     updateMinMaxFilter(maxPrices, $(e.target), operators['>']);
@@ -110,3 +113,9 @@
     updateMinMaxFilter(minPrices, $(e.target), operators['<']);
 
   });
+
+  // ---------------------------------------------------------
+
+  // $('.slide a').mouseOver(e => {
+  //   console.log(this);
+  // });
