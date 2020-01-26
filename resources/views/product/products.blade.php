@@ -2,6 +2,8 @@
 @SECTION('styles') <link rel="stylesheet" href="/css/products.css"> @ENDSECTION
 @SECTION('title') <title>Mirá nuestros productos</title> @ENDSECTION
 @SECTION('main')
+
+
   <section class="filter">
     <form action="" method="get">
       <div class="input-field">
@@ -46,9 +48,11 @@
           <input type="radio" name="orderBy" @IF (app('request')->input('orderBy') == 'name') checked @ENDIF value="name" id="name"><label for="name">Name <hr> </label>
         </div>
       </div>
-      <button type="submit" class="btn btn-white">Search</button>
+      <button type="submit" class="btn btn-white">Filtrar</button>
     </form>
   </section>
+
+
   <section class="products">
     @foreach($products as $product)
       <article class="product__container">
@@ -58,12 +62,15 @@
             <span>{{ $product->name }}</span>
             <span>{{ $product->price() }}</span>
           </div>
+          <div class="product__category">
+            <img src="/images/icons/{{ $product->category->logo }}" alt="">
+          </div>
         </div>
         <div class="product__action">
           <a href="{{ route('product.show', ['product' => $product->id]) }}" class="btn btn-white">See more</a>
           <button type="button" id="addToCart" onclick="
                                                   event.preventDefault();
-                                                  document.getElementById('add-to-cart_form{{ $product->id }}').submit();"
+                                                  addProductToCart({{ $product->id }});"
           class="btn">Add to cart</button>
           <form action="/products/add-to-cart" id="add-to-cart_form{{ $product->id }}" method="post" style="display: none;">
             @csrf
@@ -73,4 +80,5 @@
       </article>
     @endforeach
   </section>
+
 @ENDSECTION

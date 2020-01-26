@@ -14,10 +14,23 @@ class CartController extends Controller
         $product = Product::find($req['product']);
         if ($product != null) {
 
-            $req->user()->cart->products()->attach($product->id);
+            Auth::user()->cart->products()->attach($product->id);
         }
 
-        return \redirect()->back();
+        if ($req->ajax()) {
+
+          Auth::user()->cart->load('products');
+          $products = Auth::user()->cart->products;
+
+          foreach ($products as $key => $prod) {
+            $prod->price = $prod->price();
+          }
+
+          return response()->json($products);
+
+        }else{
+          return \redirect()->back();
+        }
     }
 
     public function removeProduct(Request $req)
@@ -38,7 +51,7 @@ class CartController extends Controller
 
         }
 
-        return \redirect()->back();
+        return 'Producto/s quitados del carrito';
     }
 
     public function buyCart(Request $req)
@@ -50,7 +63,7 @@ class CartController extends Controller
 
         $req->user()->createNewCart();
 
-        return \redirect()->back();
+        return view('partials.thanks')->render();
     }
 
     public function showBoughtCart(Cart $cart)

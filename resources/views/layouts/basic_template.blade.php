@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/f20e971e07.js" crossorigin="anonymous"></script>
   @YIELD("bootstrap")
@@ -18,10 +19,17 @@
         <img src="/images/icons/Atlas-surf-logo2.png" alt="">
 
       <button class="hamburger" type="button" id="hamburger"><i class="fas fa-bars"></i></button>
-      <button type="button" id="search-button" class="hamburger search"><label id="label-search" for="search"><i class="fas fa-search"></i></label></button>
+      <button style="display: none;" type="button" id="search-button" class="hamburger search"><label id="label-search" for="search"><i class="fas fa-search"></i></label></button>
     </div>
     <nav id="nav" class="">
       <ul>
+        @AUTH
+          <li class="nav_cart">
+            <a><img src="/images/icons/cart.png" alt=""></a>
+            @include('partials.cart')
+          </li>
+        @ENDAUTH
+
         <li><a href="{{ route('home') }}">Home</a></li>
         @AUTH
           <li class="dropdown__toggler"><img src="/storage/users_pics/{{Auth::user()->user_pic}}" class="thumbnail-user"/><a>{{Auth::user()->name}}</a>
@@ -43,7 +51,7 @@
         @ENDAUTH
         <li><a href="{{ route('questions') }}">FAQ</a></li>
       </ul>
-      <form action="index2.php" class="search-form" id="search-form">
+      <form style="display: none;" action="index2.php" class="search-form" id="search-form">
         <input type="text" id="search" class="search-field" name="search" placeholder="Search">
         <button type="submit" name="button"></button>
       </form>

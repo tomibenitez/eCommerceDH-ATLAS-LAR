@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/f20e971e07.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/main.css">
@@ -14,13 +15,19 @@
     <header class="header-navbar">
       <div class="main-hd">
 
-          <img src="images/icons/Atlas-surf-logo2.png" alt="">
+        <img src="images/icons/Atlas-surf-logo2.png" alt="">
 
         <button class="hamburger" type="button" id="hamburger"><i class="fas fa-bars"></i></button>
-        <button type="button" id="search-button" class="hamburger search"><label id="label-search" for="search"><i class="fas fa-search"></i></label></button>
+        <button style="display: none;" type="button" id="search-button" class="hamburger search"><label id="label-search" for="search"><i class="fas fa-search"></i></label></button>
       </div>
       <nav id="nav" class="">
         <ul>
+          @AUTH
+            <li class="nav_cart">
+              <a><img src="/images/icons/cart.png" alt=""></a>
+              @include('partials.cart')
+            </li>
+          @ENDAUTH
           <li><a href="{{ route('home') }}">Home</a></li>
           @AUTH
             <li class="dropdown__toggler"><img src="/storage/users_pics/{{ Auth::user()->user_pic }}" class="thumbnail-user"/><a> {{ Auth::user()->name }} </a>
@@ -42,13 +49,12 @@
           @ENDAUTH
           <li><a href="{{ route('questions') }}">FAQ</a></li>
         </ul>
-        <form action="#" class="search-form" id="search-form" method="get">
+        <form style="display: none;" action="#" class="search-form" id="search-form" method="get">
           <input type="text" id="search" class="search-field" name="search" placeholder="Search">
           <button type="submit" name="button"></button>
         </form>
       </nav>
     </header>
-    <!-- <video src="" muted autoplay loop></video> -->
     <video src="images/beach2.webm" muted autoplay loop></video>
     <div class="vid-overlay"></div>
     <div class="header__bajada">
@@ -69,7 +75,7 @@
         <div class="slide">
           <img src="/images/{{ $category->picture }}" alt="">
           <div class="slide__bottom">
-            <img src="images/icons/{{ $category->logo }}" alt="">
+            <img src="/images/icons/{{ $category->logo }}" alt="">
             <h4>{{ strtoupper($category->display_name) }}</h4>
           </div>
           <a href="{{ $category->urlToProducts() }}"></a>

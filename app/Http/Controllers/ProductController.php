@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function index(ProductsFilterRequest $req)
     {
+
         if (
             $req->has('category') &&
             $req->has('minPrice') &&

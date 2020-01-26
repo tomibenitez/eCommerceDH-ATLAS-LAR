@@ -11,6 +11,9 @@
       <p>
         {{ $product->description }}
       </p>
+      <p>
+        disponible desde: {{ $product->created_at->format('d/m/y') }}
+      </p>
     </div>
     <div class="product-price">
       <span>{{ $product->price() }}</span>

@@ -11,6 +11,8 @@ class Product extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['category'];
+
     static $validations = [
       'name' => 'required|string|max:200',
       'description' => 'required|string|min:20',

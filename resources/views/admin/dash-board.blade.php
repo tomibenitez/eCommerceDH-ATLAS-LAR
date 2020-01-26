@@ -20,7 +20,7 @@
             <li class="list-group__item">
               <a href="{{ $product->path() }}" class="w-50">{{ $product->name }} id: {{ $product->id }}</a>
               <div>
-                <span class="w-25">{{ $product->created_at }}</span>
+                <span class="w-25">{{ $product->created_at->format('d/m/y \a\t H:i:s') }}</span>
                 <a href="{{ route('product.edit', ['product' => $product->id]) }}">Editar</a>
                 <form action="{{ route('products') }}" method="post">
                   @csrf
@@ -31,7 +31,7 @@
               </div>
             </li>
         @empty
-            No tienes ningún producto creado!
+            No tenés ningún producto creado!
         @endforelse
       </ul>
 

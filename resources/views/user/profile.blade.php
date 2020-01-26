@@ -14,20 +14,20 @@
       <div class="cart__header">
         <h5>Carrito</h5>
         @IF (Auth::user()->cart->products->isNotEmpty())
-          <button type="button" onclick="document.getElementById('clear-form').submit()" class="btn-head btn-clear btn-white">Vaciar carrito</button>
-          <button type="button" onclick="document.getElementById('buy-form').submit()" class="btn-head btn-buy btn-white">Comprar carrito</button>
+          <button type="button" onclick="clearCart();" class="btn-head btn-clear btn-white">Vaciar carrito</button>
+          <button type="button" onclick="buyCart();" class="btn-head btn-buy btn-white">Comprar carrito</button>
 
-          <form action="/buy-cart" style="display: none" id="buy-form" method="post">
+          {{-- <form action="/buy-cart" style="display: none" id="buy-form" method="post">
             @CSRF
           </form>
 
           <form action="{{ route('products.remove-from-cart') }}" style="display: none" id="clear-form" method="post">
             @CSRF
-          </form>
+          </form> --}}
         @ENDIF
-        <button type="button" id="toHist" class="btn btn-white">Historial</button>
+        <button type="button" id="toHist" onclick="toHist();" class="btn btn-white">Historial</button>
       </div>
-      <ul>
+      <ul class="cart__list">
         @forelse (Auth::user()->cart->products as $product)
           <li>
             <a href="{{ route('product.show', ['product' => $product->id]) }}">{{ $product->name }}</a>
@@ -40,7 +40,7 @@
           </li>
         @empty
           <div class="p-3">
-            No tienes ningún producto en tu carrito. Mirá nuestro <a href="{{ route('products') }}">catálogo de productos</a> y encontrá lo que buscás.
+            No tenés ningún producto en tu carrito. Mirá nuestro <a href="{{ route('products') }}">catálogo de productos</a> y encontrá lo que buscás.
           </div>
         @endforelse
       </ul>
@@ -48,7 +48,7 @@
     <div class="hist">
       <div class="hist__header">
         <h5>Historial de compras</h5>
-        <button type="button" id="toCart" class="btn">Carrito</button>
+        <button type="button" id="toCart" onclick="toCart();" class="btn">Carrito</button>
       </div>
       <ul>
         {{-- @forelse (Auth::user()->boughtProducts as $product) --}}

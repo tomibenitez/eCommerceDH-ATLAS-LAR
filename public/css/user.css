@@ -79,6 +79,10 @@ section.cart-hist-container{
       justify-content: space-between;
       align-items: center;
       }
+      .cart .cart__header h5,
+      .hist .hist__header h5 {
+        margin: 4.5px;
+        }
     section.cart-hist-container ul {
       flex: 1;
       overflow-y: scroll;
@@ -376,12 +380,9 @@ section.panel{
     .hist {
       box-shadow: 0px 2px 6px rgba(0,0,0,0.3);
       }
-      .hist .hist__header  {
+      /* .hist .hist__header  {
         padding-bottom: calc(1rem + 5px);
-        }
-        .hist .hist__header h5 {
-          margin: 2px;
-          }
+        } */
       section.cart-hist-container .btn {
         display: none;
         }

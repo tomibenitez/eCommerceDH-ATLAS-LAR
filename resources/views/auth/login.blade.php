@@ -7,13 +7,13 @@
     @CSRF
     <div class="form-row" id="lila">
       <div class="form-group col-md-6">
-        <label for="inputEmail4">Email</label>
+        <label for="email">Email</label>
         <input type="email" name="email" class="form-control"
-         id="inputEmail4" placeholder="Email" value="{{ old('email') }}">
+         id="email" placeholder="Email" value="{{ old('email') }}">
       </div>
       <div class="form-group col-md-6">
-        <label for="inputPassword4">Contraseña</label>
-        <input type="password" name="password" class="form-control" id="inputPassword4" placeholder="***********">
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" class="form-control" id="password" placeholder="***********">
       </div>
       <div class="form-group col-md-6">
         <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>

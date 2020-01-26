@@ -22,7 +22,6 @@ nextButton.addEventListener('click', function(e) {
   direction = 1;
   slider.style.transform = "translateX(-20%)";
 
-  console.dir(slider);
 });
 
 prevButton.addEventListener('click', slidePrev);

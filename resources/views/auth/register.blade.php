@@ -3,7 +3,7 @@
 @SECTION('styles') <link rel="stylesheet" href="/css/register.css"> @ENDSECTION
 @SECTION('title') <title>Register</title> @ENDSECTION
 @SECTION('main')
-  <form id="lalala" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+  <form id="registerForm" action="{{ route('register') }}" method="post" enctype="multipart/form-data">
     @CSRF
     <div class="form-row justify-content-center">
       <div class="form-group col-md-3">
