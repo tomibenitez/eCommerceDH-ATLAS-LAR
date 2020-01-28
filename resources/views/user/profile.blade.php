@@ -116,4 +116,14 @@
       @ENDIF
     </ul>
   </section>
+
+  <section class="panel">
+    <h5 class="panel__header">Eliminar esta cuenta</h5>
+    <form action="/eliminar-cuenta" style="text-align: center; padding: 2rem;" method="post">
+
+      @CSRF
+
+      <button type="submit" class="btn">Si, estoy seguro</button>
+    </form>
+  </section>
 @ENDSECTION

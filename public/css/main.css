@@ -538,6 +538,8 @@ body {
         margin-left: auto;
         }
 .thanks__container {
+  opacity: 0;
+  transition: opacity 200ms;
   background: rgba(0, 0, 0, .65);
   position: fixed;
   top: 0;
@@ -548,8 +550,11 @@ body {
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  color: #0f0f0f;
   }
   .thanks__inner {
+    transform: scale(0);
+    transition: transform 400ms 250ms;
     position: relative;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
@@ -593,7 +598,15 @@ body {
       color: white;
       text-shadow: 1px 1px 9px rgb(0, 0, 0);
       }
-
+      .thanks__close:hover {
+        color: rgb(222, 75, 43);
+        }
+.thanks__container.ready {
+  opacity: 1;
+  }
+  .thanks__container.ready .thanks__inner{
+    transform: scale(1);
+    }
 @media all and (min-width: 650px) {
   .top-section-wrapper {
 

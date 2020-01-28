@@ -38,3 +38,5 @@ Route::post('/products/add-to-cart', 'CartController@addProduct')->name('product
 Route::post('/products/remove-from-cart', 'CartController@removeProduct')->name('products.remove-from-cart')->middleware('auth');
 Route::post('/buy-cart', 'CartController@buyCart')->middleware('auth');
 Route::get('/bought-cart/{cart}', 'CartController@showBoughtCart')->name('bought-cart.show')->middleware('auth');
+
+Route::post('eliminar-cuenta', 'UserController@delete')->middleware('auth');

@@ -9,7 +9,7 @@
     <h3>{{ Auth::user()->name }}</h3>
   </div>
 
-  <section class="user-edit panel" id="address">
+  <section class="user-edit panel panel-with-form" id="address">
     <div class="panel__header"><h4>Nuevo domicilio</h4></div>
     <form action="" method="post">
 

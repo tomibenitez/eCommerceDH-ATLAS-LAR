@@ -286,11 +286,18 @@ buyCart = function () {
 
   fetch('/buy-cart', requestOptions)
     .then(response => {
-      return response.text();
+      return response.json();
     })
-    .then( thanksMessage => {
-      renderProductsInCart([]);
-      $('body').append(thanksMessage);
+    .then( data => {
+      if (data.addressIsSet) {
+        renderProductsInCart([]);
+        $('body').append(data.html);
+        setTimeout(() => {
+          $('.thanks__container').addClass('ready');
+        }, 100);
+      }else{
+        alert('Necesitás registrar una dirección antes de comprar! :)');
+      }
     })
 }
 

@@ -56,14 +56,31 @@ class CartController extends Controller
 
     public function buyCart(Request $req)
     {
-        $req->user()->cart->update([
-          'is_active' => '0',
-          'bought_at' => \Carbon\Carbon::now()->toDateTimeString(),
-        ]);
+        if (isset(Auth::user()->address)) {
 
-        $req->user()->createNewCart();
+          $req->user()->cart->update([
+            'is_active' => '0',
+            'bought_at' => \Carbon\Carbon::now()->toDateTimeString(),
+          ]);
 
-        return view('partials.thanks')->render();
+          $req->user()->createNewCart();
+
+          $data = [
+            'addressIsSet' => true,
+            'html' => view('partials.thanks')->render(),
+          ];
+
+          return response()->json($data);
+
+        }else{
+
+          $data = [
+            'addressIsSet' => false,
+            'html' => '',
+          ];
+
+          return response()->json($data);
+        }
     }
 
     public function showBoughtCart(Cart $cart)

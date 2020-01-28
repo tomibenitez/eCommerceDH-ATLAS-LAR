@@ -432,6 +432,8 @@ footer{
         }
 
 .thanks__container {
+  opacity: 0;
+  transition: opacity 200ms;
   background: rgba(0, 0, 0, .65);
   position: fixed;
   top: 0;
@@ -442,8 +444,11 @@ footer{
   justify-content: center;
   align-items: center;
   z-index: 10000;
+  color: #0f0f0f;
   }
   .thanks__inner {
+    transform: scale(0);
+    transition: transform 400ms 250ms;
     position: relative;
     background-color: rgb(255, 255, 255);
     border-radius: 20px;
@@ -490,6 +495,12 @@ footer{
       .thanks__close:hover {
         color: rgb(222, 75, 43);
         }
+.thanks__container.ready {
+  opacity: 1;
+  }
+  .thanks__container.ready .thanks__inner{
+    transform: scale(1);
+    }
 .p-3{
   padding: 3rem !important;
 }
