@@ -96,7 +96,9 @@ class ProductController extends Controller
         $product = Product::find($req['product']);
 
         if ($product != null) {
-            $product->delete();
+            $product->update([
+              'is_active' => '0'
+            ]);
         }
 
         return \redirect(route('admin'));

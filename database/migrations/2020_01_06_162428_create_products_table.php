@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->string('picture');
             $table->unsignedBigInteger('admin_id');
+            $table->boolean('is_active')->default('1');
             $table->timestamps();
         });
     }

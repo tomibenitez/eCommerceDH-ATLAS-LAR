@@ -239,7 +239,15 @@ article.product__container{
   background: white;
   color: black;
   }
-
+.product__action .btn.disabled,
+.product-details .add-to-cart-btn.btn.disabled{
+  background: rgb(98, 98, 98);
+  cursor: not-allowed;
+  }
+  .product__action .btn.disabled:hover,
+  .product-details .btn.disabled{
+    background: rgb(98, 98, 98);
+    }
 section.panel{
   background: #fff;
   border-radius: 15px;

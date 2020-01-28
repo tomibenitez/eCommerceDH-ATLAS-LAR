@@ -57,6 +57,7 @@
             <a href="{{ route('bought-cart.show', ['cart' => $cart->id]) }}">{{ $cart->bought_at }}</a>
             <span>{{ $cart->products->count() }}</span>
             <span>{{ $cart->total() }}</span>
+            {{-- <span>$0.00</span> --}}
           </li>
         @empty
           <div class="p-3">

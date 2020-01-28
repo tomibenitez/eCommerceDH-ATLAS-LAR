@@ -12,12 +12,20 @@ class CartController extends Controller
     public function addProduct(Request $req)
     {
         $product = Product::find($req['product']);
-        if ($product != null) {
+
+        if ($product->is_active == 1) {
+          if ($product != null) {
 
             Auth::user()->cart->products()->attach($product->id);
+
+          }
         }
 
         if ($req->ajax()) {
+
+          if($product->is_active == 0){
+            return \response()->json(['itemIsNoActive' => true]);
+          }
 
           Auth::user()->cart->load('products');
           $products = Auth::user()->cart->products;
@@ -26,10 +34,17 @@ class CartController extends Controller
             $prod->price = $prod->price();
           }
 
-          return response()->json($products);
+          $data = [
+            'itemIsNoActive' => false,
+            'products' => $products
+          ];
+
+          return response()->json($data);
 
         }else{
+
           return \redirect()->back();
+
         }
     }
 

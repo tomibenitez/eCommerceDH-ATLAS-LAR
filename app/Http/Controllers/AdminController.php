@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function showDashBoard()
     {
-        $products = Auth::user()->createdProducts;
+        $products = Auth::user()->activeCreatedProducts();
         $categories = Category::all();
         return view('admin.dash-board', compact(['products', 'categories']));
     }

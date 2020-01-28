@@ -78,6 +78,11 @@ class User extends Authenticatable
         return $this->hasMany(Product::class, 'admin_id');
     }
 
+    public function activeCreatedProducts()
+    {
+        return $this->createdProducts()->where('is_active', 1)->get();
+    }
+
     public function cart()
     {
         return $this->belongsTo(Cart::class);

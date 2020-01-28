@@ -191,8 +191,12 @@
       .then(response => {
         return response.json();
       })
-      .then( products => {
-        renderProductsInCart(products);
+      .then( data => {
+        if (data.itemIsNoActive) {
+          alert('Este producto no está disponible');
+        }else{
+          renderProductsInCart(data.products);
+        }
       })
 
   }

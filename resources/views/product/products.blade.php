@@ -71,11 +71,11 @@
           <button type="button" id="addToCart" onclick="
                                                   event.preventDefault();
                                                   addProductToCart({{ $product->id }});"
-          class="btn">Add to cart</button>
-          <form action="/products/add-to-cart" id="add-to-cart_form{{ $product->id }}" method="post" style="display: none;">
+          class="btn @IF($product->is_active == 0)disabled @ENDIF">Add to cart</button>
+          {{-- <form action="/products/add-to-cart" id="add-to-cart_form{{ $product->id }}" method="post" style="display: none;">
             @csrf
             <input type="hidden" name="product" value="{{ $product->id }}">
-          </form>
+          </form> --}}
         </div>
       </article>
     @endforeach

@@ -21,7 +21,10 @@
     <form action="/products/add-to-cart" method="post">
       @csrf
       <input type="hidden" name="product" value="{{ $product->id }}">
-      <button type="submit" class="btn add-to-cart-btn">Al carrito!</button>
+      <button type="button" onclick="
+                                              event.preventDefault();
+                                              addProductToCart({{ $product->id }});"
+      class="btn add-to-cart-btn @IF($product->is_active == 0)disabled @ENDIF">Al carrito!</button>
     </form>
   </section>
 @ENDSECTION
